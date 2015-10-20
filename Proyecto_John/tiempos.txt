@@ -1,0 +1,3 @@
+--- Crack passwd con john ----
+1era session: 11:10 - 11:25
+2da session: 11:46 -

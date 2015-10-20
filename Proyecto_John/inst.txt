@@ -1,0 +1,10 @@
+shadow y passwd files en /etc
+unshadow comando
+john comando
+ej: unshadow /etc/passwd /etc/shadow > <filename>
+	john <filename>
+NOTA: importante el orden en unshadow
+
+Linux utiliza el algoritmo SHA-512
+Otro es el MD5
+otro es el DES
