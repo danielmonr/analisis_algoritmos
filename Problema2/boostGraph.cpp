@@ -39,8 +39,6 @@
 #include <time.h>
 
 
-
-
 using namespace std;
 using namespace boost;
 
@@ -138,6 +136,32 @@ int main(){
 	cout << "Tiempo: " << (((float)t)/ CLOCKS_PER_SEC) << " segundos." << endl;
 
 	cout << "Floyd-Warshall" << endl;
+	const int m = 15;
+	vector<int> d2(m, (numeric_limits<int>::max)());
+	int D[m][m];
+	t = clock();
+	johnson_all_pairs_shortest_paths(g, D, distance_map(&d2[0]));
+	t = clock() - t;
+	cout << "Tiempo: " << (((float)t)/ CLOCKS_PER_SEC) << " segundos." << endl;
+
+	 cout << "Impirmir Floyd-Warshall" << endl;
+	 char inf = 236;
+	for (int i = 0; i < m; ++i){
+		cout << setw(3) << i;
+	}
+
+	cout << endl;
+	for (int i = 0; i < m; ++i){
+		cout << setw(1) << i ;
+		for (int j = 0; j <m; ++j){
+			if (D[i][j] == (numeric_limits<int>::max)())
+				cout << setw(3) << inf;
+			else
+				cout << setw(3) << D[i][j];
+		}
+		cout << endl;
+	}
+
 
 	return 0;
 }
