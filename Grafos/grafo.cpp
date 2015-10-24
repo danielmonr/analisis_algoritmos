@@ -17,7 +17,9 @@
  */
 
 #include <iostream>
+#include <queue>
 #include <vector>
+#include <limits>
 
 typedef struct Nodo{
 	int valor;
@@ -106,7 +108,23 @@ void imprimirGrafo(g graph){
 }
 
 
+typedef struct d{
+	int dist;
+	Nodo p;
+	Nodo n;
+}*distancia;
 
 void Dijkstra(g graph, nodo s){
+	std::vector<distancia> D;
+	std::vector<Nodo> Q;
+
+	// Inizialisacion
+	for (auto item:(graph->nodos)){
+		q.push_back(item);
+		distancia temp = new distancia;
+		temp->dist = std::numeric_limits<int>::max();
+		temp->p = nullptr;
+		temp->n = item;
+	}
 
 }
