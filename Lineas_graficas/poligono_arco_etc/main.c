@@ -12,8 +12,8 @@ int poligono(int n, int puntos[]);
 
 int main(int argc, char **argv)
 {
-	int nl, x1, y1, x2, y2;
 
+int nl;
 	int gd = DETECT, gm = VGAMAX;
 
 	int puntos[1000], count;
@@ -58,11 +58,13 @@ return i;
 /* Algoritmo DDA */
 int DDALine(int x0, int y0, int x1, int y1, int puntos[])
 {
-	int maxY, i;
+	int maxY, i, temp;
 
-	float dx, dy, m, x, y;
+ 	float dx, dy, m, x, y;
 
-	i=0;
+ 	i=0;
+
+
 
 	dx=x1-x0;
 	dy=y1-y0;
@@ -71,6 +73,15 @@ int DDALine(int x0, int y0, int x1, int y1, int puntos[])
 
 	if (dx == 0) /* Es una línea vertical */
 	{
+	  if (y0 > y1){
+	    temp = y1;
+	    y1 = y0;
+	    y0 = temp;
+			temp = x1;
+			x1 = x0;
+			x0 = temp;
+
+	  }
 		for(y = y0; y <= y1; ++y)
 		{
 			putpixel(x0, maxY-y, WHITE);
@@ -81,6 +92,15 @@ int DDALine(int x0, int y0, int x1, int y1, int puntos[])
 	}
 	else if (dy == 0) /* Es una línea horizontal */
 	{
+		if (x0 > x1){
+	    temp = y1;
+	    y1 = y0;
+	    y0 = temp;
+			temp = x1;
+			x1 = x0;
+			x0 = temp;
+
+	  }
 		for(x = x0; x <= x1; ++x)
 		{
 			putpixel(x, y0, WHITE);
@@ -91,6 +111,15 @@ int DDALine(int x0, int y0, int x1, int y1, int puntos[])
 	}
 	else if (dy <= dx) /* Es una línea con pendiente < 1 */
 	{
+		if (x0 > x1){
+			temp = y1;
+			y1 = y0;
+			y0 = temp;
+			temp = x1;
+			x1 = x0;
+			x0 = temp;
+
+		}
 		m = dy/dx;
 		y = y0;
 
@@ -105,8 +134,18 @@ int DDALine(int x0, int y0, int x1, int y1, int puntos[])
 	}
 	else /* Es una línea con pendiente > 1 */
 	{
+		if (y0 > y1){
+	    temp = y1;
+	    y1 = y0;
+	    y0 = temp;
+			temp = x1;
+			x1 = x0;
+			x0 = temp;
+
+	  }
 		m = dx/dy;
 		x = x0;
+
 		for(y = y0; y <= y1; ++y)
 		{
 			putpixel((int)x, maxY-y, WHITE);

@@ -10,22 +10,22 @@ int main()
 {
 	int gd=DETECT, gm;
 	int radius;
-	
+
 	int puntos[10000];
 	int count=0;
-	
+
 	printf("Entre el radio de la circunferencia: ");
 	scanf("%d",&radius);
-	
+
 	initgraph(&gd, &gm, NULL);
-	
+
 	count = midPointCircle(radius, puntos);
-	
+
 	generaArchivo(puntos, count);
-	
+
 	getch();
 	closegraph();
-	
+
 	return 0;
 }
 
@@ -34,13 +34,13 @@ int circlePoints(int x, int y, int puntos[], int i)
 {
 	int maxx = getmaxx()/2;
 	int maxy = getmaxy()/2;
-	
+
 	putpixel(maxx+x,maxy+y,WHITE);
-	
+
 	puntos[i]=maxx+x;
 	puntos[i+1]=maxy+y;
 	i+=2;
-	
+
 	putpixel(maxx+y,maxy+x,WHITE);
 	putpixel(maxx-x,maxy+y,WHITE);
 	putpixel(maxx+y,maxy-x,WHITE);
@@ -48,7 +48,7 @@ int circlePoints(int x, int y, int puntos[], int i)
 	putpixel(maxx-y,maxy+x,WHITE);
 	putpixel(maxx-x,maxy-y,WHITE);
 	putpixel(maxx-y,maxy-x,WHITE);
-	
+
 	return i;
 }
 
@@ -58,24 +58,24 @@ int midPointCircle(int radius, int puntos[])
 	int x = 0, y = radius;
 	double p = 5.0/4.0-radius;
 	int i = 0;
-	
+
 	i = circlePoints(x, y, puntos, i);
-	
+
 	while(y>x)
 	{
 		if(p < 0)
 			p += 2.0 * x + 1.0;
 		else
 		{
-			p += 2.0 * (x - y) + 1.0;
-			y--;
+			//p += 2.0 * (x - y) + 1.0;
+			//y--;
 		}
-		
+
 		x++;
-		
+
 		i = circlePoints(x, y, puntos, i);
 	}
-	
+
 	return i;
 }
 
@@ -83,9 +83,9 @@ int midPointCircle(int radius, int puntos[])
 void generaArchivo(int puntos[], int count)
 {
 	FILE *fp;
-	
+
 	int i,np;
-	
+
 	fp=fopen("puntos.txt","w");
 
 	fprintf(fp,"%s","Los puntos dibujados son:\n");
