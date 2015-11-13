@@ -18,24 +18,17 @@ int main(){
   {
     printf("Hilo %d de %d \n", omp_get_thread_num(), omp_get_num_threads());
     #pragma omp for
-  for (i = 0; i < N; ++i){
-    A[i] = rand() % 100;
-    B[i] = rand() % 100;
-    S[i] = 0;
-  }
-  }
-  /*Computo */
-  #pragma omp parallel private(i)
-  {
-  #pragma omp for
-  for (i = 0; i < N; ++i){
-    S[i] = A[i] + B[i];
+    for (i = 0; i < N; ++i){
+	    A[i] = rand() % 100;
+   	    B[i] = rand() % 100;
+	    S[i] = 0;
+	    S[i] = A[i] + B[i];
+    }
   }
   /*Visualización de resultados */
   for (i = 0; i < N; ++i){
     //printf("[%7d] % 3d + %3d = %4d \n", i, A[i], B[i], S[i]);
   }
-}
   //printf("Tiempo: %f \n", (float)t/CLOCKS_PER_SEC);
 
 
