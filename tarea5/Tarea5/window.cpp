@@ -15,7 +15,8 @@ Window::Window(QWidget *parent)
     shapeComboBox->addItem(tr("Polygono"), Canvas::Polygono);
     shapeComboBox->addItem(tr("Arco"), Canvas::Arco);
     shapeComboBox->addItem(tr("Cubo"), Canvas::Cubo);
-    shapeComboBox->addItem(tr("Piramide"), Canvas::Piramide);
+    shapeComboBox->addItem(tr("Prisma Triangular"), Canvas::Piramide);
+    shapeComboBox->addItem(tr("Prisma Rectangular"), Canvas::Prisma);
     shapeComboBox->addItem(tr("Cono"), Canvas::Cono);
     canvas = new Canvas;
 
@@ -26,7 +27,8 @@ Window::Window(QWidget *parent)
     transformCB = new QComboBox;
     transformCB->addItem(tr("Transladar"), Canvas::Translacion);
     transformCB->addItem(tr("Rotar"), Canvas::Rotacion);
-    transformCB->addItem(tr("Escalar"), Canvas::Escalar);
+    transformCB->addItem(tr("ZoomIn"), Canvas::Escalar);
+    transformCB->addItem(tr("ZoomOut"), Canvas::Achicar);
 
     transformLabel = new QLabel(tr("&Transformacion:"));
     transformLabel->setBuddy(transformCB);
@@ -58,13 +60,13 @@ Window::~Window()
 }
 
 void Window::shapeChanged(){
-    canvas->setAttribute(Qt::WA_OpaquePaintEvent, false);
+    //canvas->setAttribute(Qt::WA_OpaquePaintEvent, false);
     Canvas::Forma forma = Canvas::Forma(shapeComboBox->itemData(shapeComboBox->currentIndex(), IDRole).toInt());
     canvas->setFigura(forma);
 }
 
 void Window::shapeTransformed(){
-    canvas->setAttribute(Qt::WA_OpaquePaintEvent, true);
+    //canvas->setAttribute(Qt::WA_OpaquePaintEvent, true);
     Canvas::Transf transf = Canvas::Transf(transformCB->itemData(transformCB->currentIndex(), IDRole).toInt());
     canvas->setTransformed(transf);
 }

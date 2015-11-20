@@ -13,8 +13,8 @@ class Canvas : public QWidget
 public:
     explicit Canvas(QWidget *parent = 0);
     ~Canvas();
-    enum Forma {Cuadrado, Polygono, Arco, Cubo, Piramide, Cono};
-    enum Transf {Translacion, Rotacion, Escalar};
+    enum Forma {Cuadrado, Polygono, Arco, Cubo, Piramide, Cono, Prisma};
+    enum Transf {Translacion, Rotacion, Escalar, Achicar};
 
     QSize minimumSizeHint() const;
     QSize sizeHint() const;
@@ -31,6 +31,7 @@ protected:
 private:
     Forma forma;
     Transf transf;
+    std::vector<int> transformaciones;
 };
 
 #endif // CANVAS_H
