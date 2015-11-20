@@ -1,0 +1,9 @@
+Para poder correr el programa:
+ - Abra la carpeta 'build-Tarea5-Desktop_Qt_5_5_1_GCC_64bit-Realease'
+ - Ejecute el comando 'make'
+ - Ejecute el programa './Tarea5'
+
+Como funciona:
+ - Seleccione una figura de la lista disponible
+ - Seleccione una transformacion de las que estan disponibles
+ - Si selecciona una nueva figura el Canvas se limpiará
